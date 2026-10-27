@@ -12,6 +12,7 @@ description = "A learning project for NFL player statistics and fantasy football
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "matplotlib>=3.11.2",
     "nflreadpy>=0.1.5",
     "polars>=1.0",
 ]
