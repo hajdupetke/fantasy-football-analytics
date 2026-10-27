@@ -2,12 +2,11 @@
 
 import argparse
 import os
-from pathlib import Path
 import tempfile
+from pathlib import Path
 
 import nflreadpy
 import polars as pl
-
 
 DEFAULT_CACHE_DIR = Path(__file__).resolve().parents[0] / "raw"
 
