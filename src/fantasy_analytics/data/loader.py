@@ -36,7 +36,15 @@ def get_weekly_player_stats(
         if path.exists() and not refresh:
             frame = pl.read_parquet(path)
         else:
-            frame = nflreadpy.load_player_stats(season, summary_level="week")
+            frame = (
+                nflreadpy
+                .load_player_stats(season, summary_level="week")
+                .with_columns((
+                        pl.col("fantasy_points")
+                        + pl.col("receptions") * 0.5
+                    ).alias("fantasy_points_half_ppr")
+                )
+            )
             cache_path.mkdir(parents=True, exist_ok=True)
             descriptor, temporary_name = tempfile.mkstemp(
                 prefix=f".{path.stem}_", suffix=".parquet", dir=cache_path
